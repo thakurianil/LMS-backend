@@ -1,5 +1,17 @@
-@rootApi = http://localhost:8000/api/v1
+@rootApi = http://localhost:9003/api/v1
 
 #### server test
 
-GET http://localhost:8000
+GET http://localhost:9003
+
+###
+POST http://localhost:9003/api/v1/users
+Content-Type: application/json
+
+{
+    "fName": "Anil",
+    "lName": "Khand"
+    "email": "anil@gmail.com",
+    "password": "hello",
+    "phone":"0452348839"
+}

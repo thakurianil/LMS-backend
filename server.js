@@ -2,6 +2,8 @@ import express from "express";
 import { connectMongoDB } from "./src/config/mongoConfig.js";
 const app = express();
 const PORT = process.env.PORT || 8000;
+import cors from "cors";
+import { UserRouter } from "./src/routers/userRouter.js";
 
 //config
 
@@ -16,10 +18,15 @@ connectMongoDB()
 /// Middlewares
 
 //Routers
-app.get("/", (req, res) => {
-  res.json({
-    message: "server is live",
-  });
-});
+app.use(cors());
+app.use(express.json());
 
-// Listen server
+app.use("/api/v1/users", UserRouter);
+
+//live server
+app.get("/", (req, res) =>{
+  res.json({
+      status:"Success",
+      message: "Hello Server"
+  })
+})
