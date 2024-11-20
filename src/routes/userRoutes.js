@@ -1,13 +1,14 @@
 import express from "express";
 import { consoleMiddleWare } from "../middleware/middleware.js";
-import { authenticateJWT, Sign_Access_JWT } from "../middleware/authenticate.js";
+import { authenticateJWT, Sign_Access_JWT } from "../utils/authenticate.js";
 
 import { addUser, getUser } from "../models/user/userModel.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
+import { loginValidator, signUpValidator } from "../middleware/joiValidation.js";
 
 export const UserRouter = express.Router();
 
-UserRouter.post("/", async (req, res) => {
+UserRouter.post("/", signUpValidator, async (req, res) => {
   try {
     req.body.password = hashPassword(req.body.password);
 
@@ -39,7 +40,7 @@ UserRouter.post("/", async (req, res) => {
   }
 });
 
-UserRouter.post("/login", consoleMiddleWare, async (req, res) => {
+UserRouter.post("/login", loginValidator, consoleMiddleWare, async (req, res) => {
   try {
     const { email, password } = req.body;
 

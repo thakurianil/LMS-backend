@@ -5,13 +5,13 @@
 GET http://localhost:9003
 
 ###
-POST http://localhost:9003/api/v1/users
+POST {{rootApi}}/users
 Content-Type: application/json
 
 {
     "fName": "Anil",
     "lName": "Khand",
-    "email": "anil1@gmail.com",
+    "email": "anil12@gmail.com",
     "password": "hello",
     "phone":"0452348839"
 }
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:9003/api/v1/users/login
+POST {{rootApi}}/users/login
 Content-Type:  application/json
 
 {
