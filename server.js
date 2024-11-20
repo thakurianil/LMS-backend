@@ -3,7 +3,7 @@ import { connectMongoDB } from "./src/config/mongoConfig.js";
 const app = express();
 const PORT = process.env.PORT || 8000;
 import cors from "cors";
-import { UserRouter } from "./src/routers/userRouter.js";
+import { UserRouter } from "./src/routes/userRoutes.js";
 
 //config
 
