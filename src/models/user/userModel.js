@@ -7,9 +7,3 @@ export const addUser = (obj) => {
 export const getUser = (email) => {
   return userSchema.findOne({ email });
 };
-
-
-// export const updateRefreshJWT = (JWTtoken)=>{
-
-
-// }

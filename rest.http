@@ -26,3 +26,27 @@ Content-Type:  application/json
     "email": "anil@gmail.com",
     "password": "hello"
 }
+
+
+###
+POST {{rootApi}}/books
+Content-Type: application/json
+
+{
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "isbn": "9780743273565",
+  "imageURL": "https://example.com/greatgatsby.jpg",
+  "availability": true,
+  "summary": "A novel set in the 1920s about Jay Gatsby and his unrequited love for Daisy Buchanan.",
+  "status": "active",
+  "publishedYear": 1925
+}
+
+
+###
+
+get {{rootApi}}/books/displayAll
+Content-Type: application/json
+
+

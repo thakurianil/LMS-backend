@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 import cors from "cors";
 import { UserRouter } from "./src/routes/userRoutes.js";
+import { BookRouter } from "./src/routes/bookRoutes.js";
 
 //config
 
@@ -22,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/users", UserRouter);
-
+app.use("/api/v1/books", BookRouter);
 //live server
 app.get("/", (req, res) =>{
   res.json({
