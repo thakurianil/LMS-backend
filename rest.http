@@ -31,16 +31,17 @@ Content-Type:  application/json
 ###
 POST {{rootApi}}/books
 Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNkMWQ4ZmJhMGEyYjA3MmI3Zjk3OTQiLCJlbWFpbCI6ImFuaWxAZ21haWwuY29tIiwiaWF0IjoxNzMyNjY3MTk3LCJleHAiOjE3MzI3NTM1OTd9.2IcTBH94Q4xlO0NgCw7o5ihXIE7tf98RCU2gl4PcCdk
 
 {
-  "title": "The Great Gatsby",
-  "author": "F. Scott Fitzgerald",
-  "isbn": "9780743273565",
-  "imageURL": "https://example.com/greatgatsby.jpg",
+  "title": "To Kill a Mockingbird",
+  "author": " Lee",
+  "isbn": "0611200811111",
+  "imageURL": "https://example.com/tokillamockingbird.jpg",
   "availability": true,
-  "summary": "A novel set in the 1920s about Jay Gatsby and his unrequited love for Daisy Buchanan.",
+  "summary": "A novel about racial injustice and the destruction of innocence, seen through the eyes of young Scout Finch in 1930s Alabama.",
   "status": "active",
-  "publishedYear": 1925
+  "publishedYear": 1960
 }
 
 
@@ -50,3 +51,16 @@ get {{rootApi}}/books/displayAll
 Content-Type: application/json
 
 
+###
+get {{rootApi}}/users/verify
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNkMWQ4ZmJhMGEyYjA3MmI3Zjk3OTQiLCJlbWFpbCI6ImFuaWxAZ21haWwuY29tIiwiaWF0IjoxNzMyNjY1OTA4LCJleHAiOjE3MzI3NTIzMDh9.U1DcH80vJWMtJEjRf3xpIsaAIvtV8XjQMDPmPPYYZGg
+
+
+
+###
+get {{rootApi}}/books/displayBook/673d5b7a9f6ce690c5516076
+
+
+###
+DELETE {{rootApi}}/books/deleteBook/673d5b7a9f6ce690c5516076

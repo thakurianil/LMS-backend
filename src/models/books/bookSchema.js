@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const BookSchema = new mongoose.Schema(
   {
+    status: {
+      type: String,
+      default: "inactive",
+    },
     title: {
       type: String,
       required: true,
@@ -29,10 +33,7 @@ const BookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    status: {
-      type: String,
-      default: "inactive",
-    },
+
     publishedYear: {
       type: Number,
       required: true,
