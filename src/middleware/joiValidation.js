@@ -40,9 +40,40 @@ const signUpSchema = Joi.object({
   phone: STR.allow("",null),
 });
 
+
+
 export const signUpValidator = (req,res,next)=>{
     joiValidation(req,res,next,signUpSchema);
 }
+
+const bookValidationSchema = Joi.object({
+    title: Joi.string().required(),
+    author: Joi.string().required(),
+    isbn: Joi.string().required(),
+    imageURL: Joi.string().uri().required(),
+    availability: Joi.boolean().optional(),
+    summary: Joi.string().required(),
+    publishedYear: Joi.number().integer().min(1000).max(new Date().getFullYear()).required(),
+  });
+  
+  export const createBookValidator = (req,res,next)=>{
+    joiValidation(req,res,next,bookValidationSchema);
+}
+
+const bookUpdateValidationSchema = Joi.object({
+    title: Joi.string().optional(),
+    author: Joi.string().optional(),
+    isbn: Joi.string().optional(), // ISBN cannot be updated but validate if passed
+    imageURL: Joi.string().uri().optional(),
+    availability: Joi.boolean().optional(),
+    summary: Joi.string().optional(),
+    publishedYear: Joi.number().integer().min(1000).max(new Date().getFullYear()).optional(),
+  });
+
+  export const updateBookValidator = (req,res,next)=>{
+    joiValidation(req,res,next,bookUpdateValidationSchema);
+}
+
 
 // export const signUpValidator = (req, res, next) => {
 //     try {

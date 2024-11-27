@@ -2,7 +2,7 @@ import express from "express";
 import { consoleMiddleWare } from "../middleware/middleware.js";
 import { authenticateJWT, refreshJWT, Sign_Access_JWT, Sign_REFRESH_Access_JWT } from "../utils/authenticate.js";
 
-import { addUser, getUser } from "../models/user/userModel.js";
+import { addUser, getUser, updateUser } from "../models/user/userModel.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
 import { loginValidator, signUpValidator } from "../middleware/joiValidation.js";
 
@@ -56,10 +56,14 @@ UserRouter.post("/login", loginValidator, consoleMiddleWare, async (req, res) =>
 
         const refreshJWToken = Sign_REFRESH_Access_JWT({ userId: user._id, email: email });
 
+        const updatedUser = await updateUser(user._id, { refreshJWT: refreshJWToken });
+
+        console.log(updatedUser);
+        
         res.json({
           status: "success",
           message: "login Success",
-          user,
+          user: updatedUser,
           JWToken,
           refreshJWToken
         });
@@ -95,6 +99,6 @@ UserRouter.get(
 UserRouter.get("/refresh-accessJWT", refreshJWT, (req,res,next)=>{
 
   const {email} = req.userInfo;
-  const accessJWT = Sign_Access_JWT({email}  )
-  res.json(accessJWT)
+  const refreshJWT = Sign_REFRESH_Access_JWT({email}  )
+  res.json(refreshJWT)
 } )

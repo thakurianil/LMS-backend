@@ -1,10 +1,11 @@
 import express from "express";
 import { addBook, deleteBookByID, displayBooks, getBooksByID, updateBookByID } from "../models/books/bookModel.js";
 import { authenticateJWT, isAdmin } from "../utils/authenticate.js";
+import { createBookValidator, updateBookValidator } from "../middleware/joiValidation.js";
 
 export const BookRouter = express.Router();
 
-BookRouter.post("/", authenticateJWT, isAdmin, async (req, res) => {
+BookRouter.post("/", authenticateJWT, isAdmin, createBookValidator, async (req, res) => {
   try {
 
     const book = await addBook(req.body);
@@ -87,7 +88,7 @@ BookRouter.get("/:id", async(req, res)=>{
 })
 
 
-BookRouter.delete("/:id", async(req,res)=>{
+BookRouter.delete("/:id",authenticateJWT, isAdmin, async(req,res)=>{
     try {
         const bookId = req.params.id; 
         const book = await deleteBookByID(bookId); 
@@ -102,7 +103,7 @@ BookRouter.delete("/:id", async(req,res)=>{
     }
 })
 
-BookRouter.put("/:id", async (req, res) => {
+BookRouter.put("/:id", authenticateJWT, isAdmin, updateBookValidator, async (req, res) => {
     try {
         const bookId = req.params.id; 
         const updateData = req.body; 

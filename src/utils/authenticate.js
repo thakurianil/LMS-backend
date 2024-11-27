@@ -11,7 +11,7 @@ export const Sign_Access_JWT = (obj) => {
 };
 
 export const Sign_REFRESH_Access_JWT = (obj) => {
-  console.log(process.env.ACCESS_SECRET_KEY);
+  
   const token = jwt.sign(obj, process.env.ACCESS_REFRESH_SECRET_KEY, {
     expiresIn: "30d",
   });
