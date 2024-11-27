@@ -5,7 +5,8 @@
 GET http://localhost:9003
 
 ###
-POST {{rootApi}}/users
+
+POST {{rootApi}}/users 
 Content-Type: application/json
 
 {
@@ -13,54 +14,64 @@ Content-Type: application/json
     "lName": "Khand",
     "email": "anil12@gmail.com",
     "password": "hello",
-    "phone":"0452348839"
+    "phone": "0452348839"
 }
-
 
 ###
 
-POST {{rootApi}}/users/login
-Content-Type:  application/json
+POST {{rootApi}}/users/login 
+Content-Type: application/json
 
 {
     "email": "anil@gmail.com",
     "password": "hello"
 }
 
-
 ###
-POST {{rootApi}}/books
+
+POST {{rootApi}}/books 
 Content-Type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNkMWQ4ZmJhMGEyYjA3MmI3Zjk3OTQiLCJlbWFpbCI6ImFuaWxAZ21haWwuY29tIiwiaWF0IjoxNzMyNjY3MTk3LCJleHAiOjE3MzI3NTM1OTd9.2IcTBH94Q4xlO0NgCw7o5ihXIE7tf98RCU2gl4PcCdk
 
 {
-  "title": "To Kill a Mockingbird",
-  "author": " Lee",
-  "isbn": "0611200811111",
-  "imageURL": "https://example.com/tokillamockingbird.jpg",
-  "availability": true,
-  "summary": "A novel about racial injustice and the destruction of innocence, seen through the eyes of young Scout Finch in 1930s Alabama.",
-  "status": "active",
-  "publishedYear": 1960
+    "title": "To Kill a Mockingbird",
+    "author": " Lee",
+    "isbn": "0611200811111",
+    "imageURL": "https://example.com/tokillamockingbird.jpg",
+    "availability": true,
+    "summary": "A novel about racial injustice and the destruction of innocence, seen through the eyes of young Scout Finch in 1930s Alabama.",
+    "status": "active",
+    "publishedYear": 1960
 }
 
-
 ###
 
-get {{rootApi}}/books/displayAll
+get {{rootApi}}/books/displayAll 
 Content-Type: application/json
 
-
 ###
-get {{rootApi}}/users/verify
+
+get {{rootApi}}/users/verify 
 Content-Type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNkMWQ4ZmJhMGEyYjA3MmI3Zjk3OTQiLCJlbWFpbCI6ImFuaWxAZ21haWwuY29tIiwiaWF0IjoxNzMyNjY1OTA4LCJleHAiOjE3MzI3NTIzMDh9.U1DcH80vJWMtJEjRf3xpIsaAIvtV8XjQMDPmPPYYZGg
 
+@bookId = 673d5b7a9f6ce690c5516076
+###
 
+
+
+get {{rootApi}}/books/displayBook/{{bookId}}
 
 ###
-get {{rootApi}}/books/displayBook/673d5b7a9f6ce690c5516076
 
+DELETE {{rootApi}}/books/deleteBook/{{bookId}}
 
 ###
-DELETE {{rootApi}}/books/deleteBook/673d5b7a9f6ce690c5516076
+
+PUT {{rootApi}}/books/updateBook/{{bookId}} 
+Content-Type: application/json
+
+{
+    "title": "Updated Title 1",
+    "publishedYear": 2100
+}
