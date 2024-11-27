@@ -37,7 +37,7 @@ console.log(book);
   }
 });
 
-BookRouter.get("/displayAll", async (req, res) => {
+BookRouter.get("/", async (req, res) => {
   try {
     let page = req.query.page || 1;
     let limit = req.query.limit || 10;
@@ -67,7 +67,7 @@ BookRouter.get("/displayAll", async (req, res) => {
 });
 
 
-BookRouter.get("/displayBook/:id", async(req, res)=>{
+BookRouter.get("/:id", async(req, res)=>{
     try {
         const bookId = req.params.id; 
     console.log(bookId);
@@ -87,7 +87,7 @@ BookRouter.get("/displayBook/:id", async(req, res)=>{
 })
 
 
-BookRouter.delete("/deleteBook/:id", async(req,res)=>{
+BookRouter.delete("/:id", async(req,res)=>{
     try {
         const bookId = req.params.id; 
         const book = await deleteBookByID(bookId); 
@@ -102,7 +102,7 @@ BookRouter.delete("/deleteBook/:id", async(req,res)=>{
     }
 })
 
-BookRouter.put("/updateBook/:id", async (req, res) => {
+BookRouter.put("/:id", async (req, res) => {
     try {
         const bookId = req.params.id; 
         const updateData = req.body; 

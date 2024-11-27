@@ -46,7 +46,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNkM
 
 ###
 
-get {{rootApi}}/books/displayAll 
+get {{rootApi}}/books 
 Content-Type: application/json
 
 ###
@@ -60,18 +60,18 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNkM
 
 
 
-get {{rootApi}}/books/displayBook/{{bookId}}
+get {{rootApi}}/books/{{bookId}}
 
 ###
 
-DELETE {{rootApi}}/books/deleteBook/{{bookId}}
+DELETE {{rootApi}}/books/{{bookId}}
 
 ###
 
-PUT {{rootApi}}/books/updateBook/{{bookId}} 
+PUT {{rootApi}}/books/{{bookId}} 
 Content-Type: application/json
 
 {
     "title": "Updated Title 1",
-    "publishedYear": 2100
+    "publishedYear": 22020
 }
