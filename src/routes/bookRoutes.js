@@ -1,5 +1,5 @@
 import express from "express";
-import { addBook, deleteBookByID, displayBooks, getBooksByID, updateBookByID } from "../models/books/bookModel.js";
+import { addBook, deleteBookByID, displayActiveBooks, displayAllBooks, getBooksByID, updateBookByID } from "../models/books/bookModel.js";
 import { authenticateJWT, isAdmin } from "../utils/authenticate.js";
 import { createBookValidator, updateBookValidator } from "../middleware/joiValidation.js";
 
@@ -38,12 +38,12 @@ console.log(book);
   }
 });
 
-BookRouter.get("/", async (req, res) => {
+BookRouter.get("/all", async (req, res) => {
   try {
     let page = req.query.page || 1;
     let limit = req.query.limit || 10;
 
-    const books = await displayBooks(page, limit);
+    const books = await displayAllBooks(page, limit);
 
     let bookData = [...books];
 
@@ -68,24 +68,29 @@ BookRouter.get("/", async (req, res) => {
 });
 
 
-BookRouter.get("/:id", async(req, res)=>{
+BookRouter.get("/:id?", async (req, res) => {
     try {
         const bookId = req.params.id; 
-    console.log(bookId);
-    
-        const book = await getBooksByID(bookId); 
-        
-        
-        if (book) {
-            res.status(200).json(book); 
+        if (bookId) {
+            const book = await getBooksByID(bookId); 
+            if (book) {
+                res.status(200).json(book); 
+            } else {
+                res.status(404).json({ message: "Book not found for the given ID." }); 
+            }
         } else {
-            res.status(404).json({ message: "Book not found" }); 
+            const books = await displayActiveBooks();
+            if (books && books.length > 0) {
+                res.status(200).json(books); 
+            } else {
+                res.status(404).json({ message: "No active books available." }); 
+            }
         }
     } catch (error) {
-        console.error("Error fetching the book:", error);
+        console.error("Error fetching the book:", { error, bookId });
         res.status(500).json({ message: "Internal server error" }); 
     }
-})
+});
 
 
 BookRouter.delete("/:id",authenticateJWT, isAdmin, async(req,res)=>{

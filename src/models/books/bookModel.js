@@ -4,7 +4,7 @@ export const addBook = (obj) => {
   return bookSchema(obj).save();
 };
 
-export const displayBooks = (page, limit) => {
+export const displayAllBooks = (page, limit) => {
   return bookSchema
     .find()
     .skip(limit * (page - 1))
@@ -24,4 +24,8 @@ export const updateBookByID = async (id, updateData) => {
   console.log("Updating book with ID:", id);
   const updatedBook = await bookSchema.findByIdAndUpdate(id, updateData);
   return updatedBook;
+};
+
+export const displayActiveBooks = () => {
+  return bookSchema.find({ status: "active" });
 };
